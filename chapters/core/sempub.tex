@@ -1,0 +1,39 @@
+\chapter{Transforming Semantic Notes into Semantic Blog Posts}
+\label{ch:semblogging}
+
+\begin{flushright}
+ \textit{Based on ``Linking Semantic Personal Notes'' \cite{Dragan2010a}\\published at the Workshop on Knowledge Injection into and Extraction from Linked Data (KIELD~2010~co-located~with~EKAW~2010)}
+\end{flushright}
+
+In the previous two chapters we showed how Semantic Web technologies are available both on the desktop and of course on the Web, and how the two networks of linked data can be connected. SemNotes, a semantic note-taking tool for the Semantic Desktop, described in Chapter \ref{ch:semnotes}, shows how new data can be created and seamlessly integrated with existing semantic information from the desktop. Chapter \ref{ch:sdwod} describes an algorithm for automatically connecting desktop resources to their Web aliases, bridging the gap between the desktop and the Web in regards of semantic data, opening up the possibility of augmenting desktop data and building personalised desktop services. 
+
+In this chapter we present a use case, and a proof of concept system which builds on our previous work in order to support easy publishing and sharing of semantic personal notes taken with SemNotes as Linked Data.
+Our approach can be used to publish any kind of information from the desktop to the Web, enabling integration of small chunks of personal knowledge into the Web of Data.
+This use case illustrates a solution to the second research question \textbf{Q 2.} from Section \ref{sub:question}, \emph{How to expand the scope of the Semantic Desktop into the realm of the Web of Data, to enhance the user experience and benefit?}, more specifically, to the second and third sub-questions \textbf{Q 2.2.} --- \emph{How to use the Web information found related to a desktop resource?}, and \textbf{Q 2.3.} --- \emph{How to make desktop data available online safely?}
+
+\input{chapters/core/sempub/introduction}
+
+\input{chapters/core/sempub/usecase}
+
+\input{chapters/core/sempub/approach}
+
+\input{chapters/core/sempub/system}
+
+\input{chapters/core/sempub/evaluation}
+
+\input{chapters/core/sempub/relatedwork}
+
+\section{Conclusion}
+
+In this chapter we presented an approach for publishing semantic information from the desktop as Linked Data on the Web. The approach is realised by a system which takes semantic notes from the desktop and makes them part of the Web of Data, as semantic blog posts. The goal of the system is to provide a way for publishing and sharing complete information by preserving the personal context of the notes without compromising privacy. While the use case presented is focused on notes and semantic blogging, the same approach can be applied to publishing of any interlinked information. 
+
+We defined a publishing process that comprises of two steps:
+\begin{enumerate}
+ \item preparation --- the note is transformed into a SIOC-based Web representation; and
+ \item publication and sharing --- the note is published online following the Linked Data principles.
+\end{enumerate}
+
+In addition, we provided an implementation of the process, and tested it against a set of requirements regarding publishing personal content from the desktop to the Web as Linked Data.
+
+While we do not authentication issues in this current release, we are considering SW-compliant systems such as FOAF+SSL \cite{Story2009} for future versions of the system.
+We also plan to develop additional integration modules for publishing platforms, e.g. Drupal, WordPress, and to investigate approaches for authentication and notification tailored towards the people mentioned in the published data.

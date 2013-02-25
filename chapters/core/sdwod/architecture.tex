@@ -1,0 +1,32 @@
+\section{The Process of Finding Web Aliases}
+\label{sec:process}
+
+The goal of our algorithm and system is to find Web aliases for desktop resources. A Web alias is a Web entity identifier, i.e., URI, that represents the same real-world thing as the desktop entity to which it was matched. To find Web aliases, we use the information available on the desktop, like the contact information from the address book for people, or metadata of music files for songs, albums and artists. We also use the knowledge about the desktop ontologies and the way data is organised and used on the desktop. The desktop data drives the entire process, and is used throughout the steps:
+
+\begin{enumerate}
+ \item Candidate selection --- blocking pass
+ \begin{itemize}
+  \item Query and identify candidate entities from various Web of Data sources
+  \item Retrieve data for each candidate from the appropriate source[s].
+ \end{itemize}
+ \item Candidate filtering --- scoring based on similarity
+ \begin{itemize}
+  \item Compute similarity score based on the data of the entities.
+  \item Filter the candidates based on the similarity score.
+ \end{itemize}
+\end{enumerate}
+
+The first step requires identifying a list of candidate entities and obtaining the data available about them. There are two options for this:
+
+\begin{itemize} 
+\item through a small set of sources that we know have the data we need, and can query each of them independently for possible candidates, or 
+\item through a search engine for the Web of Data, like Sindice \cite{Tummarello2007} which indexes millions of documents containing semantic mark-up.
+\end{itemize}
+Each option has use cases where it is more suitable than the other, thus we designed our system to support both. Querying specific sources is preferred for instance, if the data is from a very specific domain, like cancer research, or when we are interested only in results from an organisation's internal repository. Using a search engine is best when the information sources to query are not known a priori. It also has the advantage of covering a large number of information sources with only one query, and of selecting the most relevant data sources and candidates with respect to the query via the search engine ranking system. However, in the case of ambiguous entities, the latter option has the disadvantage of returning too many unrelated results, thus making the entity selection more difficult.
+
+Once a list of candidates is available, we compute a similarity score for each of them with respect to the desktop entity. The desktop data is considered authoritative, and the matching process is driven by it. This has the apparent advantage of control, since the desktop data is more strictly under the control of the user. However, there are cases when the desktop data is simply insufficient, or has uncaught errors due to the user's incomplete information, or the Semantic Desktop's extraction process.
+
+The matching algorithm checks first whether the types of the candidate entities correspond to the type of the desktop entity, and discards the ones that do not.
+Only then are the data of the entities examined and the properties and corresponding values compared. If required, the algorithm looks at other related entities and their properties. The values of the properties are compared using either exact string matching or string similarity techniques. As mentioned above, the ontologies used on the desktop are different from those used on the Web, thus both type checking and property matching require mappings between the two sets of vocabularies.
+
+After the matching algorithm computes the scores for each of the candidates, the list is filtered for values above a given threshold. References to those Web resources which passed are saved in the desktop repository, as \verb|pimo:hasOtherRepresentation| links from the initial desktop resource.

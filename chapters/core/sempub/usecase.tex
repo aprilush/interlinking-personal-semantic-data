@@ -1,0 +1,26 @@
+\section{From Note-Taking to Weblogging}
+\label{sec:reqsemblog}
+
+Two characteristics of blog posts which are relevant to this use case are: 
+\begin{itemize}
+ \item their topics are of interest to the author and thus are very likely to have references to things also present on the desktop (e.g. people, events); 
+ \item the context consists of the references made in their content, such as places, projects, or other blog posts.
+\end{itemize}
+
+However, not all blog posts start by being a blog post. Some are just ideas or impressions jotted down for later, in one's preferred desktop note-taking application. Nevertheless, some of these notes do become posts after polishing and refining, especially as some notes might require further investigation before they can be published (e.g. when writing on a technical subject). Examples include notes taken at presentations, ideas on topics of interest written down at times when blogging is not possible (attending a meeting or lack of Internet connection).
+
+Tools from the Semantic Desktop, like SemNotes, provide means to enhance these notes locally, by interlinking them with other desktop data --- the contacts in the address book, the events from the calendar application, the projects worked on, the music listened to. 
+For example, a note about an upcoming concert can be linked to the performing artist which is in turn linked to the music files of that artist and pictures from earlier shows stored in a desktop photo application.
+Such annotations give context to the note and should be preserved when the note is published as a blog post on the Web, since it enables serendipitous browsing and information discovery, through the relevant additional links they contain.
+
+Currently, personal notes, even the ones semantically enriched using Semantic Desktop applications, must be published as blog posts by being manually copied into a blogging tool.
+In this way, any additional semantic information available on the desktop is lost or, if copied, leads to broken references as they point to the local resources which are not accessible outside of the desktop.
+The note-taking to publishing process is sometimes cut short by using the drafting functionality offered by some systems like WordPress or Blogger, so that users can directly take the notes in the blogging tool, usually online, thus replacing the desktop note-taking application completely. However, using online tools deprives the user from having the personal context added to the blog post, since desktop information cannot be easily integrated in Web-based services.
+
+In order to enable a better transition from personal notes to blog posts, or simply to Web-based information available to others (for example, meeting notes published in a company intranet or lecture notes shared between students of the same class), we defined a list of requirements that a system for publishing semantic personal data online should fulfil:
+\begin{description}
+ \item[R1.] Publish the complete desktop data on the Web without losing any relevant information, including metadata and context (e.g. tags, relations, identifiers);
+ \item[R2.] Protect any machine readable and private data that might be unwillingly included in the context being transferred\footnote{The protected data does not include the actual text to be shared as it is a conscious decision to publish it, taken explicitly by the user};
+ \item[R3.] Publish the note according to the Linked Data principles and describe it using popular ontologies; 
+ \item[R4.] Enable object-centred sociality by establishing connections between data published by different users.
+\end{description}

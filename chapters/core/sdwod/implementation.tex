@@ -1,0 +1,108 @@
+\section{Implementing the Process}
+
+We implemented the process described above in a desktop daemon that finds Web aliases for desktop entities.
+It sequentially searches for aliases for all resources that have no alias listed, and for resources that have changed since the last time aliases were determined for them. In the case when a resource is revisited after being modified, the previously found aliases are discarded and new ones are searched for.
+
+The result of the process is the creation of new links on the Semantic Desktop between local resources and their Web aliases. They can be used to enhance the desktop data about the entities, or as entry points to access further information online.
+
+The implementation has two major components, each handling one step of the matching process: A query component that initiates the search and identifies the candidates, and a matching component that filters the candidates based on similarity measures. We next discuss these components in turn.
+
+\subsection{The Query Component}
+\label{sub:querymodule}
+
+The query component was designed to be able to use either generic search engines or specific data sources. Therefore, we chose to make the query module plugin-based, thus allowing various new sources to be connected if needed. The query modules are responsible for finding the initial list of candidates, as well as for retrieving the data for each candidate. The maximum number of candidates to retrieve from a data source can be set as a parameter in the configuration. We allow three types of plugins:
+\begin{description}
+ \item[SWSE] --- connect to semantic search engines, through their APIs. We provide a plugin of this type for Sindice.
+ \item[Sparql] --- connect to sources that provide a SPARQL endpoint. We provide plugins of this type for DBpedia and the Semantic Web Conference Server.
+ \item[Custom] --- connect to other sources, possibly ones that do not expose any data as RDF (e.g., relational databases or third-party APIs like last.fm).
+ \end{description}
+
+Most major Linked Data providers (e.g. DBpedia) are indexed by Sindice, therefore the Sindice plugin is the only one enabled by default.
+
+In the Sindice module, the initial query, which determines the list of candidates, is constructed using all the value properties of the desktop entity, combined using the boolean conjunction operator ``OR''. Multiple word terms are also tokenised and the tokens are added to the query. This may result into a longer query which contains duplicate words. This is however due to the fact that we rely on the search engine to interpret the query and rank higher the results that match most of the terms. The search engine (in this case Sindice) algorithm ranks higher results which match more of the strings connected by ``OR''. Building the query with just the strings without quotes would result in automatic tokenisation by the search engine, which might lead to higher ranking of unsuitable results, especially if the words searched for are common. Thus we chose to prevent the tokenisation by the search engine by using quotes around the full string searched for, but still mimic the default behaviour of the algorithm by 
+doing the tokenisation ourselves, as a fail-safe in case the query yields no results. 
+
+For the music album ``One Night Only'' by the Bee Gees from 1998,  the query constructed is:
+
+\begin{quote}
+ \emph{``Bee Gees'' OR ``One Night Only'' OR ``1998'' OR ``Bee'' OR ``Gees'' OR ``One'' OR ``Night'' OR ``Only''}
+\end{quote}
+
+\subsection{The Matching Component}
+\label{sub:matchingcomp}
+
+The matching module computes a similarity score for each pair $($\emph{desktop~entity}---\emph{web~candidate~entity}$)$. The way the score is computed depends on a set of parameters:
+
+\begin{description}
+ \item[String matching (SM)] --- If this parameter is set to \texttt{true}, the matching module will use string similarity measures where appropriate. Currently the system supports Monge-Elkan \cite{Monge1996} and Chapman\footnote{\url{http://sourceforge.net/projects/simmetrics/}} distances. If the value is set to \texttt{false}, the matching module uses exact matching of property values.
+ \item[Weighted properties (WP)] --- If \texttt{true}, the matching module will use weights for the properties compared, otherwise, all properties contribute equally to the final score.
+ \item[Multi-valued properties (MVP)] --- If \texttt{true}, properties that have more than one matching value will contribute to the score proportionally to the number of values. 
+ \end{description}
+
+These parameters are set by default to true. However, the measurements we did for the evaluation (see Section \ref{sec:sdwodeval}) show that in some cases they can be disabled without impacting the quality of the result, while requiring less processing; or even make the algorithm perform slightly better when disabled, for some restrictions.
+
+\lstset{
+	caption={Type mapping for pimo:Person.}, 
+	label=lst:typemapping,
+	language=js
+}
+\setlength\parindent{0in}
+\begin{minipage}[htb]{\linewidth}
+\begin{lstlisting}
+{
+   "http://www.semanticdesktop.org/ontologies/2007/11/01/pimo#Person": {
+      "mapping":[
+         "http://xmlns.com/foaf/0.1/Person",
+         "http://xmlns.com/foaf/0.1/Agent",
+         "http://dbpedia.org/ontology/Person",
+         "http://www.w3.org/2000/10/swap/pim/contact#Person",
+         "http://rdf.data-vocabulary.org#Person" 
+      ]
+   }
+}
+\end{lstlisting}
+\end{minipage}
+\setlength\parindent{0.21in}
+
+\lstset{
+	caption={Property mapping for nco:fullname of nmm:performer.}, 
+	label=lst:propmapping,
+	language=js
+}
+\setlength\parindent{0in}
+\begin{minipage}[htb]{\linewidth}
+\begin{lstlisting}
+{
+   "http://www.semantcdesktop.org/ontologies/2009/02/19/nmm#performer##http://www.semanticdesktop.org/ontologies/2007/03/22/nco#fullname": {
+      "mapping": [
+         "http://dbpedia.org/property/artist",
+         "http://dbpedia.org/ontology/artist##http://xmlns.com/foaf/0.1/name",
+         "http://xmlns.com/foaf/0.1/maker##http://xmlns.com/foaf/0.1/name"
+      ],
+      "approx":"true",
+      "thresholds": [
+         "MongeElkan:0.7",
+         "Chapman:0.8"
+      ],
+      "weight":"0.7" 
+   }
+}
+\end{lstlisting}
+\end{minipage}
+\setlength\parindent{0.21in}
+
+The algorithm uses a set of mappings from the desktop ontologies to some of the more popular Web vocabularies, like FOAF. There are two kinds: \emph{type mappings} (see Listing~\ref{lst:typemapping} for an example) and \emph{property mappings}, each described in a separate file. The property mapping supports paths of properties. For example,  Listing~\ref{lst:propmapping} shows a path composed of the property \texttt{dbpedia:artist} and \texttt{foaf:name}. The mappings are relatively static configurations of the system. We have created a set of mappings for the most common ontologies, which can be used out of the box by the end users. Power users can edit the mapping files according to their needs. We envision that as more users find the system useful, more mappings will be created and shared.
+
+\subsubsection{The scoring and matching algorithm}
+
+The algorithm for computing the score works as follows. Given a pair of entities to be compared $e_{d}$ and $e_{w}$, it first determines the sets of types $T_{e_{d}}$ and $T_{e_{w}}$ for each entity, and the set of types $Map[T_{e_{d}}]$ to which the elements of $T_{e_{d}}$ are mapped. If no types are matching, i.e., $T_{e_{w}} \cap Map[T_{e_{d}}] = \phi$, it gives a score $score(e_{w}) = 0$, and stops the matching. Otherwise, it continues the process by evaluating the properties.
+
+The evaluation of the properties is driven by the relations and properties of the desktop entity $e_{d}$. For each property $p_{e_{d}}$, the algorithm retrieves the list of values $V(p_{e_{d}}) = \{v\ :\ \{e_{d}\ p_{e_{d}}\ v\}\}$. Based on the list of property mappings $Map[p_{e_{d}}]$, it determines the set of values $V(p_{e_{w}} \cap Map[p_{e_{d}}])$ that the properties from $Map[p_{e_{d}}]$ have in common with $e_{w}$. If there is no value in common, i.e., $V(p_{e_{d}}) = \phi$ or $V(p_{e_{w}} \cap Map[p_{e_{d}}]) = \phi$, the pair is skipped and nothing is added to the score. Otherwise, it continues the process by measuring the similarity between values.
+
+The evaluation of values is performed using string similarity between each pair of values $(v_{d}, v_{w}) \in V(p_{e_{d}}) \times V(p_{e_{w}} \cap Map[p_{e_{d}}])$. The algorithm creates a sparse matrix where the value of a cell contains a string similarity score between 0 and 1. Let $sum_{p_{e_{d}}}$ be the sum of the best score for each row of the matrix.
+The final score is computed as follows:
+$$
+score(e_{w}) = \frac{\sum_{p_{e_{d}}}(w_{p_{e_{d}}}*sum_{p_{e_{d}}})}{\sum_{p_{e_{d}}}(w_{p_{e_{d}}}*\left|{V(p_{e_{d})}}\right|)}
+$$
+where $w_{p_{e_{d}}}$ is the weight assigned to a certain property mapping.
+If the score is above 0.5\footnote{We found that the threshold 0.5 provided the best results in our experiment.}, the entity is accepted as a Web alias for the desktop entity.

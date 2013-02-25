@@ -1,0 +1,18 @@
+\section{Related Work}
+\label{sub:sdwodrelatedwork}
+
+The problem of entity linking is well known across various research communities with a variety of different names, such as record linkage \cite{Felligi1969}, entity resolution \cite{Benjelloun2006}, reference reconciliation \cite{Dong2005b} or object consolidation \cite{Hogan2007}. A wide variety of algorithms has been developed for resolving the co-reference problem, but record linkage between distributed databases is still considered a  difficult problem.
+
+Recent initiatives within the Semantic Web community address the problem of linking entities across data sources. For instance, \cite{Jaffri2007} describe the phenomenon of proliferation of URIs and propose a Consistent Reference Service to manage URI equivalences. The OKKAM project \cite{Bouquet2007} proposes an infrastructure for assigning global identifiers at web scale. These approaches are more focussed towards the management of entity identity on the Web, but do not provide an easy means to create new links between data sources. 
+
+Similar to our approach, \cite{Raimond2008} describe an algorithm and its implementation GNAT, for linking a personal music collection to corresponding MusicBrainz resources. The approach recursively measures the similarity of the resource graphs from the two datasets, with the limitation that the same vocabularies must be used in both. By contrast, using property paths in our mappings, we eliminate the need for recursion while still propagating the measures from connected resources.
+Silk is a framework for linking multiple entities between two datasets \cite{Bizer2009}. It relies on user-defined rules and various string matching algorithms to measure the similarity between two entities. In this case it is necessary to know a priori which specific dataset to link to and to perform manual configuration of the matching algorithms, something that requires a high degree of expertise.
+\cite{Hogan2007} and \cite{Sais2007} propose logic-based methodologies for merging identifiers of equivalent entities across multiples knowledge sources. While being precise, these techniques do not have a very good recall and are computationally demanding.
+
+The most relevant approach related to ours is the Silk framework. We provide a generic matching process that the user can configure based on their own expertise in order to get more precise results. However, our approach differs by the fact that the matching process is not restricted to linking data between two predefined information sources. On the contrary, our approach makes it possible to link desktop data with an arbitrary number of external data sources. This makes the problem harder since we are generally unaware of the data structure or schema of these data sources. 
+
+We therefore need to first find potential entities of interest among a vast number of data sources, then retrieve a partial description of these entities and rely on more complex entity matching algorithms. 
+
+This first step of our algorithm can be seen as a blocking pass to reduce the information space before executing complex matching algorithms \cite{Elmagarmid2007}. The blocking step is implemented on top of a boolean query model for centralised search systems such as Sindice \cite{Tummarello2007} and on top of the SPARQL query language for specific data sources providing a SPARQL endpoint.
+
+\cite{Nikolov2012} propose the use of a genetic algorithm to achieve unsupervised discovery of the similarity parameters needed for data linking between two datasets. Similarly to our algorithm, the approach proposed uses a blocking pass using a SPARQL query, to reduce the computation time. As with Silk, the algorithm considers only two datasets to be matched.

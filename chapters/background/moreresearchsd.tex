@@ -1,0 +1,71 @@
+\subsubsection{PlacelessDocuments} 
+
+Placeless Documents \cite{Dourish2000} offers an alternative document management architecture, based on the flexible structure created using tags, or \emph{document properties}, not the rigid hierarchy of folders. The system, created at Xerox PARC, is based on an earlier prototype called Presto \cite{Dourish1999}. It is not explicitly a ``semantic'' framework, but it has many of the features we find in the more recent Semantic Desktops: information management based on metadata, and interconnected resources. Besides using properties to organise information from documents and emails, the Placeless system is distinctive through the use of \emph{active properties}, which store executable code, and which provide services on the documents they are attached to. These ``property-based document services are centred on the document and document activity, rather than on a separate application'' thus solving the issue of application silos and allowing the user to focus on the task. Examples of such services include 
+translation, summarisation, and format conversion.
+
+The system supports generic system properties, as well as user-generated properties which enable a personalised view of the information space of the user. The properties are stored independently from the documents they describe, in a database. 
+
+Documents can be aggregated in collections based on their properties, they can be shared and collaborated on. The framework integrates the existing storage infrastructure available, through content providers connecting to the local file system, the web, or any network-accessible repository. Placeless Documents also integrates with existing applications which can only work with classic file systems, through the NFS protocol.
+
+\subsubsection{WonderDesk}
+
+WonderDesk \cite{Zhang2005} is a distributed Semantic Desktop for resource management and sharing, part of WonderSpace eScience suite. It works with scientific objects, like papers, presentations, and other research artefacts. The system provides a basic vocabulary for metadata about the eScience resources and allows different domain specific vocabularies to be loaded for each scientific discipline. A separate component of WonderSpace, a P2P super-node named WonderServer, acts as an information integrator and indexer for a network of WonderDesk peers. The hybrid P2P architecture allows sharing of information between the nodes in a network, while still functioning standalone as a Semantic Desktop. It provides annotation functionalities, as well as sharing of annotations and resources within the group, and distributed querying. 
+
+\subsubsection{HyperSD}
+
+HyperSD \cite{Schwabe2005} is a Semantic Desktop browser which allows navigation and access to desktop resources based on metadata about them, in the style of Haystack. The application was developed with HyperDE \cite{Nunes2005,Nunes2006}, a Semantic Web application development environment. It provides wrappers for standard desktop resources like files, contacts, events, which extract the metadata and store it alongside the schema in an RDF store. The schema is simple, reusing some properties and relations from existing Web vocabularies like FOAF. 
+The interface allows faceted browsing and contextual navigation, as well as creation and editing of new items or new associations. 
+
+\subsubsection{OntoPIM} 
+
+OntoPIM \cite{Katifori2005} is a framework for Personal Information Management that relies on the use of a Personal Ontology. It is part of a bigger project for Task-centred Information Management (TIM), and is motivated by the same challenges as described above.
+OntoPIM supports storing any object of interest from the desktop, and relating it to any concept from the ontology. The Personal Ontology is just one part of the data layer of the system. There are two other ontologies, one for domain independent objects, like documents and emails; which is mapped to another one for domain specific objects; which in turn is mapped to the Personal Ontology. The users can build and modify their model through the Personal Ontology Builder and Personalisation Tool. The system provides other services on top of the semantic data --- instance matching, semantic save, querying, mapping.
+
+\subsubsection{The Autonomic Semantic Desktop}
+
+The Autonomic Semantic Desktop \cite{Breitman2006} introduces a semantic layer to a self-managing (or autonomic) application architecture. The result is an integrated desktop environment capable of self-managing behaviour, which uses semantics to achieve its goal of simplifying Personal Information Management, by supporting the user in maintaining their personal information in an automatic (or semi-automatic) way. The user data is extracted from two domains, the desktop and the Web \cite{Breitman2005}, and is described by a shared ontology. The data layer is used as communication interface between a set of independent pluggable services.
+
+\subsubsection{Chandler}
+
+Chandler \cite{ChandlerProject} is a project that defines itself as a ``Note-to-Self Organizer'', integrating personal information from multiple applications, and supporting task management and collaboration. It does not use typical Semantic Web technologies, instead it defines its own lightweight flexible vocabulary for describing the types of data, called \emph{kinds}, as well as implementing its own data storage system. However, the ideas are consistent with those of the Semantic Desktop, integrating personal information from different sources and interconnecting it for associative browsing. The system provides a single modular user interface for the data, with different views for specific data types. Collaboration and data sharing in Chandler is realised with a client-server architecture, where the server is called a \emph{hub}.
+
+\subsubsection{SeMoDesk}
+
+The SeMoDesk \cite{Woerndl2008} project aims to bring the Semantic Desktop to the mobile environment. It tackles the limitations of mobile devices in regard of storage, display and input, while at the same time integrating, and taking advantage of the added functionality that the devices offer, like calls, text messaging, and location \cite{Woerndl2009b}. The system uses the PIMO model defined Gnowsis and Nepomuk, for describing the data, which provides the necessary concepts for PIM. Information is extracted from the applications available on the device, like the address book, calendar, email, and task management, and from files. The architecture is also similar to the one of Gnowsis, although modified to reuse services available on the mobile platform --- the SQL database on Windows Mobile for storing the data. The user interface is adapted to the smaller screen size and the different interaction mode, by limiting the number of properties displayed based on the context of use \cite{Woerndl2009a}.
+
+\subsubsection{MindRaider}
+
+MindRaider \cite{MindRaider} is an open source ``Semantic Web outliner'' which aims to help organise a user's personal resources --- documents, friends, thoughts --- ``in a way that enables quick navigation, concise representation and inferencing''. The system is modelled as a mind-mapping and note-taking tool, but it allows interlinking of more types of concepts than just notes, and provides more visualisations than a mind map.
+MindRaider uses existing vocabularies like FOAF, SKOS and Dublin Core in combination with custom ontologies used for classification. The data is stored in a triple store. 
+It enables interoperation with Gnowsis, through a connector, which allows querying data, and reusing resources. 
+
+\subsubsection{DeepaMehta}
+
+DeepaMehta \cite{Richter2005} is a service oriented application framework with a data model based on topic maps. It uses visualisations guided by research from cognitive psychology, and similar to concept maps. Its main goal is to provide a user interface which follows the associative way in which the human mind operates with information, thus keeping cognitive overhead low. The framework integrates information from different applications into one unified user interface, thus reducing the context switching imposed by using multiple applications for a single task using the same concepts. The data is described by an extensible schema, and users can create new types, relations and concepts based on a small set of predefined types. Data can be stored in several back-ends and exported and shared through SOAP. Information from various desktop applications is extracted by adapters, and can be interconnected with the Web or other remote information seamlessly. 
+
+DeepaMehta has a service oriented architecture. The main component is a Web server which communicates with the storage and the applications built on top of the framework. The system offers a thin client, a Web application to access the data through a browser, and even a mobile interface.
+
+\subsubsection{Semantic \textquoteleft LS\textquoteright}
+
+Semantic \textquoteleft LS\textquoteright ~\cite{Krishnan2008} is a PIM system that adds semantics to document management, to enable better organisation and sharing of information in small focused groups, through a P2P network. The architecture is layered, and the functionalities provided by the semantic layer include annotation --- semi-automatic or manual, extraction of metadata from files, and grouping of files in virtual folders. It also provides query functions and easy to use visualisations. The data is described using two vocabularies: a Domain Knowledge Model (DKM) based on ArchVOC, which only handles subclass and superclass relations; and an annotation schema. Semantic \textquoteleft LS\textquoteright ~uses a database to store the metadata extracted, so that the semantic file system it creates does not modify the underlying file structure or information.
+
+\subsubsection{mSpace}
+
+mSpace \cite{Smith2005} is a project that aims to support knowledge building in the style of the Memex, through associative links between documents. With the goal of enabling information exploration, the system provides a faceted interface to semantic data from multiple sources, and supports distributed queries through a centralised query service. It tackles the multidimensionality of the information by providing \emph{slices} from the space, with context and the possibility of further browsing. The data is modelled with a lightweight ontology,  which can be extended with other existing vocabularies, as required by the data of specific mSpaces. 
+
+\subsubsection{Phlat}
+
+Phlat \cite{Cutrell2006} is focused on providing an intuitive user interface for searching and browsing one's personal information, going beyond simple keyword search by using a user's intimate knowledge of the data. The system supports tagging of resources (files, emails and Web pages) by directly attaching the tag to the resource, not storing the relation in a separate location. This distinct feature has some benefits but it also has the limitation of only being able to tag things which support it (NTFS for files and MAPI for email). Developed at Microsoft, like the Stuff I've Seen system, Phlat is based on the Microsoft Search architecture.
+
+\subsubsection{Other Specialised Systems and Applications}
+
+Numerous standalone applications apply Semantic Web technologies on the desktop, without providing a unified framework for the personal data, as a full-fledged Semantic Desktop does. There are also many other systems or applications that start from the same ideas as the Semantic Desktops, and work towards offering solutions to the same challenges of managing personal information, which organise data based on the semantic relations between entities, without explicitly using Semantic Web technologies. 
+
+In this section, we include some of them, which are too domain specific or task focused to be included in the category of Semantic Desktops. They span over a wide range of domains. The \textbf{Semantic Pen} \cite{Varadarajan2005} system is a Semantic Desktop for pen devices, allowing for smarter note-taking. Since semantic note-taking is a category of special interest for us,  Section \ref{sec:notetakingapps} describes existing applications in this area.
+
+Life-logging systems are not included in the above list, as they are not necessarily concerned with personal information management, but with logging and tracking activities and experiences, rather than information and knowledge. Some examples of life-logging applications include \textbf{Forget-me-not} \cite{Lamming1994} and \textbf{Save Everything} \cite{Hull2001}. \cite{DAquin2010,DAquin2011a} describe a different life-logging system, for monitoring a user's personal data exchange on the Web, while \cite{DAquin2011b} presents a method for the semantic analysis of the activity data.
+The just-in-time information retrieval system \textbf{Remembrance Agent} \cite{Rhodes1996} and \textbf{PurpleYogi}\footnote{\url{http://www.purpleyogi.com/}} are intelligent assistants using personal information to pro-actively help the user perform tasks. Forget-me-not and the Remembrance Agent belong to the wearable computing category of systems.
+
+\textbf{Ontooffice}\footnote{by \url{http://www.ontoprise.de} taken over by Semafora \url{http://www.semafora-systems.com/}} brings integrated access from Microsoft Office application to semantic knowledge bases. \textbf{X-Explorer} \cite{Wang2005} adds semantics to document management through use of metadata and content analysis. It provides a multidimensional interface, and associative browsing. \textbf{DocuWorld} \cite{Einsfeld2005} also developed a 3D context-sensitive interface for the visualisation of a user's document space, based on metadata and relations between documents. Another visualisation paradigm is explored by \textbf{Lifestreams} and \textbf{TimeScape} systems which enable time-based organisation and presentation of information.
+
+MIT's \textbf{Semantic File System} \cite{Gifford1991} proposes a new type of organisation based on associations between files, to replace the typical tree-based hierarchy. It also describes extraction of metadata from files, to support making the associations.

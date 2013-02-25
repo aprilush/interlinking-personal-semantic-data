@@ -1,0 +1,21 @@
+\section{Conformance with the Initial Requirements}
+\label{sec:evaluationsemblog}
+
+When establishing the specifications of the framework, we identified four main requirements (Section \ref{sec:reqsemblog}).
+Our proposed implementation conforms with them as follows.
+
+\emph{\textbf{R1}: Publish the complete desktop data on the Web without losing any relevant information, including metadata and context (e.g. tags, relations, identifiers).}\\
+By translating existing desktop data surrounding the note to RDF and putting it online, available as RDFa, the entire information available on the desktop side is made available on the Web for further reuse.
+In addition, all information from the original note-taking tool, including title, tags, etc. is publicly made available on the Web.
+
+\emph{\textbf{R2}: Protect any machine readable and private data that might be unwillingly included in the context being transferred;.}\\
+By replacing the private desktop data with equivalent public Web data, we protect the former. On the desktop there is a lot of private information stored about resources, like the email address or telephone number for people, or the list of attendees of an event. When the person or event is linked to a note that is afterwards published online, such private information is not exported, because the reference to the local resource is replaced by a reference to already public Web data representing the same thing. In this manner, the context of the note being published is preserved, but the private details are not exposed.
+
+\emph{\textbf{R3}: Publish the note according to the Linked Data principles and describe it using popular ontologies.}\\
+Our system publishes notes on the Web using the Linked Data principles. Each note and connected resource, has its own URI, which is made dereferenceable, while distinguishing information resources and non-information resources.
+In addition, while original desktop data is provided using ``desktop ontologies'', the published information is made available using FOAF, SIOC, Dublin Core, etc. and the mappings have been validated through Vapour\footnote{\url{http://vapour.sourceforge.net/}}.
+
+\emph{\textbf{R4}: Enable object-centred sociality by establishing connections between data published by different users.}\\
+Since resources and tags are shared between users, notes can be browsed serendipitously through shared connections, or tags. 
+This enables ``object-centred sociality'' \cite{KnorrCetina1997}, since people can interact around these shared tags and topics, such as projects or people that they have in common.
+Depending on the destination of the publishing process, there is the possibility of having private notes, yet still accessible online by registered users only.

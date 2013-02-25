@@ -1,0 +1,65 @@
+\part{Conclusion}
+\label{part:conclusion}
+
+\chapter{Conclusion and Outlook}
+\label{ch:conclusion}
+
+The Semantic Desktop is a framework for semantic interlinking of desktop data. We ground our work in it, using the building blocks it provides --- the foundations of data representation and the layered service oriented architecture ---, to enhance it further, through good user-facing semantic applications, and to connect it to the large source of Linked Data that is the Web.
+
+The approach we took in this thesis is data-centric. We focused on maintaining and enriching the network of linked personal data that the Semantic Desktop enables. The path we took is two-fold, with both directions working towards interlinking semantic personal data. The first direction is internal, on the Semantic Desktop, through the means of new semantic applications, designed to support, and even more, encourage interlinking. Then second direction is external, connecting the desktop to the Web of Data. Both directions lead to a better interconnected environment, regardless of whether the data resides on the desktop or online.
+
+This chapter summarises the work presented in this thesis, reiterating the contributions and presenting a general discussion and insights gathered. We conclude with a list of open questions and directions for future research and a final summary of the work.
+
+\section{Contributions}
+
+This thesis presents three main contributions, as mentioned in Section \ref{sec:contribution}. 
+The first contribution sets the scene for the rest of the work, by surveying existing Semantic Desktop systems and applications, in Chapter \ref{ch:sd}. The survey presents an extensive list of systems, and compares and contrasts their features, architectures, data representation and handling.
+The rest of the work focuses on interlinking personal semantic data, following the two complementary directions. 
+
+The first direction tackles interlinking of personal data within the Semantic Desktop. Because the framework that the Semantic Desktop provides is mostly invisible to the end users, the benefits it brings must be reflected through the applications that use the framework. Thus, creating new semantic data inside the Semantic Desktop, including making new connections between resources, focuses on enabling the users to do so through semantic applications. 
+We describe the challenges of developing good semantic applications in Chapter \ref{ch:semnotes}, and we present our solutions through an example. We use SemNotes, our semantic note-taking tool for the Nepomuk-KDE Semantic Desktop, to describe the design process and implementation. Although it is a relatively small application, it covers all the life-cycle phases of semantic data, and does so in a domain which is not specific or restricted --- note-taking.
+
+SemNotes supports the integration of new semantic information, the notes, with the network of existing information available on the desktop. It encourages interlinking, by making it very easy for users to connect the notes to the relevant resources mentioned in the text. Through SemNotes we describe the importance, and difficulty, of information visualisation when working with semantic data. We also present a user study conducted to compare SemNotes with Evernote in terms of the effort spent on annotation versus effort spent searching for information. 
+
+The second direction looks outside the Semantic Desktop, to the Web of Data. It capitalises on the common representation and structure of the data in the two spaces. Because personal information from the desktop is rarely disconnected from the rest of the information available on the Web, and most entities from the desktop appear online as well, we defined and implemented an algorithm which finds and connects matching entities from the desktop and the Web. We describe the bridging of the two spaces in Chapter \ref{ch:sdwod}. We evaluated the algorithm against a gold standard of relevance judgements by experts, and proved that it produces good results according to our requirement for high precision.
+
+We weave the two threads of interlinking within and outside the desktop into a use case presenting semantic blogging. The use case, described in Chapter \ref{ch:semblogging} presents a system where notes taken with SemNotes on the Semantic Desktop, and connected with the relevant local entities, are published safely on the Web of Data as blog posts, while preserving the context created around them on the desktop, and following the principles of publishing Linked Data.
+
+\section{Directions for Future Research}
+
+We have presented in this thesis, two directions for interlinking personal semantic data. The purpose of enabling and encouraging interlinking of personal data is to create and maintain an explicit network of connected information that reflects the way we think about that information, and to use this network to improve the way we work with the information.
+
+We described the challenges faced when developing an application for the Semantic Desktop, and exemplified potential solutions to them through SemNotes design and development. However, we believe there is still much improvement to be made in the repertoire of applications for the Semantic Desktop. 
+
+We plan to further investigate Information Extraction algorithms and methods, to support:
+\begin{itemize}
+ \item the creation of multiple types of relations based on the text of the notes taken with SemNotes,
+ \item the extraction of new entities from text and connecting them to the notes, 
+ \item the extraction of links between entities mentioned in the notes --- instead of creating the links between the note and the mentioned resource. 
+\end{itemize}
+Some of this functionality is already supported through the use of controlled language, but we would like to experiment further with extracting information from free text, possibly using something like the pidgin language processor \cite{Kleek2007}.
+
+In Chapter \ref{ch:sd} we described many Semantic Desktop systems, and one of the recurring applications that they provide is a browser for the semantic data, resources and connections. Such a browser is an essential tool to allow users to peek at their data without it being filtered by any particular application, but so far, exploring semantic information has not been an easy task, as most visualisations for generic data are either graph based or tabular, and generally not pretty. One of the new and interesting visualisations that we are planning to test on personal information is the Atom interface \cite{Samp2008}.
+
+Finally, a third direction for the future is devising and running a long term, large scale user study, to gather insights into how users really use the current functionalities offered by their Semantic Desktop. We have started work in this direction, targeting users of the Nepomuk-KDE Semantic Desktop, because of the large user base that KDE has. We plan to look into what kind of semantic information is used, and what are its dynamics. We hope that such a study would help us focus our research on things which have the most impact on the way the Semantic Desktop is used.
+
+\section{Summary}
+\label{sec:summary}
+
+The main contributions of this thesis focus on supporting interlinking of personal semantic data on a Semantic Desktop and beyond. 
+
+Conceptually, we present the challenges of designing semantic applications on top of the framework provided by the Semantic Desktop, and we discuss options and possible solutions. We also detail an algorithm for bridging the gap between the connected network of information formed on the desktop with the much larger network of Linked Data on the Web, through resource matching and finding \emph{Web aliases} for desktop entities. 
+
+From the implementation point of view, we support the conceptual contributions with corresponding software. 
+\begin{description}
+ \item[SemNotes] is a note-taking semantic application for the Nepomuk-KDE Semantic Desktop. In Chapter \ref{ch:semnotes} we describe the design and implementation of SemNotes, as an illustration of possible solution to the challenges found.
+ \item[Desktop service for Web aliases] is a service for Nepomuk-KDE Semantic Desktop which automatically finds Web aliases for desktop entities and saves them locally on the desktop. In Chapter \ref{ch:sdwod} we describe the algorithm as well as the implementation, which allows for various modes of utilisation, depending on the use case.
+\end{description}
+
+We evaluated both implementations and the results are positive:
+\begin{itemize}
+ \item A comparative task-based user evaluation of SemNotes against Evernote showed that although using SemNotes for complex annotations requires more mouse clicks, there is no significant difference in time spent, while SemNotes requires significantly less effort (in time spent) for some complex searches.
+ \item The matching algorithm of the desktop service for Web aliases was evaluated against a gold standard of relevance judgements from experts, which we also constructed. The results were positive, our algorithm proving to have high precision, which was our initial goal and requirement, due to the automatic function of the service.
+\end{itemize}
+
+Finally, we combined the two directions into a coherent use case for semantic blogging, and described a system which makes use of both SemNotes and the framework for finding Web aliases for desktop resources. It can be generalised as a publishing platform for personal semantic data from the desktop to the Web, following the Linked Data principles, maintaining the context, while at the same time not exposing sensitive information.

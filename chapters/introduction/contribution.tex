@@ -1,0 +1,38 @@
+\section{Approaches and Main Contributions}
+\label{sec:contribution}
+
+In order to answer the two research questions detailed above, the thesis describes two complementary directions for expanding the network of personal semantic data of the Semantic Desktop: creating connections within the desktop, and externally to the Web. 
+
+The first direction, creating new semantic data inside the Semantic Desktop, including new connections between entities, focuses on enabling the users to do so, through semantic applications. We recognise the need for semantic applications designed specifically for the Semantic Desktop, as the framework provides capabilities above what the conventional tools can support. To demonstrate solutions to the challenges of developing semantic applications mentioned above, we describe the design process and implementation of SemNotes, a semantic note-taking tool. Although a relatively small application, it covers all the phases of the semantic data life-cycle as described in \cite{MoellerPhDThesis2009}, and does so in an unrestricted domain of use. We have written about developing SemNotes in \cite{Dragan2009a} and in more detail in \cite{Dragan2011a}.
+
+The second, external direction of bridging the gap between the Semantic Desktop data and the Web of Data looks at capitalising on the common representation and structure of the data in the two networks. Because the two worlds are rarely disconnected, and a large part of the entities from the desktop appear online as well, we define and implement an algorithm which finds Web aliases for desktop resources. This part of the work initiated from linking publication information \cite{Groza2009} on the desktop and on the Web, and continued with a use case focused on publishing semantic notes as semantic blog posts without losing link annotations \cite{Dragan2010a}. The finalised algorithm and its evaluation are described in \cite{Dragan2011b}. 
+
+To establish the background for the following work, we present a survey of Semantic Desktop systems and applications, which is an extended version of the one published as \cite{Dragan2012}.
+
+\begin{table}
+\centering
+\ra{1.3}
+\begin{tabular}{@{}lc@{\hs}l@{\hs}}
+\toprule
+Chapter & \phantom{a} & Research questions\\ 
+\midrule
+
+ \ref{ch:semnotes} Creating and Interlinking Semantic Data && \textbf{Q 1.1. Q 1.2. Q 1.3.}  \\ 
+
+ \hfill on the Desktop with SemNotes && \\
+
+ \ref{ch:sdwod} Bridging the Gap between the Semantic && \textbf{Q 2.1. Q 2.2.} \\
+
+ \hfill Desktop and the Web of Data && \\
+
+ \ref{ch:semblogging} Transforming Semantic Notes into && \textbf{Q 2.2. Q 2.3.} \\
+ 
+ \hfill Semantic Blog Posts && \\
+
+ \ref{ch:mischelperapps} Additional Extensions and Applications && \textbf{Q 1.1. Q 1.2. Q 2.1. Q 2.2.} \\
+
+\bottomrule
+\end{tabular}
+\caption{The research questions tackled in each chapter.}
+\label{tab:chaptersquestions}
+\end{table}

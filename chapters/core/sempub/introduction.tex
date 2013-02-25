@@ -1,0 +1,29 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Semantic Web technologies are deployed in various domains and applications, both on the desktop and on the Web.
+While these two domains share compatible representation models (RDF(S)/OWL), there is still a gap between data from the Web and the desktop. We showed in the previous chapter how finding Web aliases for Semantic Desktop resources enables us to bridge this gap. This solution is however unidirectional --- it only solves connection from the desktop to the Web, and not the reverse, from the Web to the desktop. It can be argued that accessing desktop information from the Web is not necessary, or not safe, or that the risks exceed the benefits. However, sharing desktop information online has many possible use cases, and does not necessarily involve making private information public. 
+
+One such use case of sharing desktop information and realising better integration of personal data with online data, is described in this chapter. We present an approach for publishing personal notes from the desktop (using SemNotes and Semantic Desktop technologies) to the Web of Data (using the Linked Data principles). Our goal is to publish this data online without losing the personal context established on the desktop through the links from the notes and the related desktop resources.
+Our approach consists of two main steps: 
+\begin{enumerate}
+ \item preparing the desktop data for sharing, 
+ \item publishing it online. 
+\end{enumerate}
+In addition, it requires two prerequisite steps, which are supported by previous work: 
+\begin{itemize} 
+ \item the note-taking process and annotation of the note (adding the context) which was presented in Chapter \ref{ch:semnotes}, and 
+ \item the identification of Web URIs which represent the same real-world thing as the desktop resources that belong to the context of a note, which was presented in Chapter \ref{ch:sdwod}. 
+\end{itemize}
+
+Our contribution consists of the process for publishing personal information from the desktop to the Web following the Linked Data principles \cite{BernersLee2006}, and a system implementation that allows sharing of semantic personal notes as semantic blog posts, interlinked with existing information from the Web of Data. 
+The publication process must follow the Linked Data principles, while at the same time protecting sensitive private data from being shared unwillingly, and maintaining the meaningful relations in the process.
+
+
+The semantic notes taken with SemNotes constitute the personal information that we want to publish as Linked Data. They are semantically linked to local resources mentioned in their content, like people, projects or other notes. If the notes were directly published online, the relations that enrich them would be lost and the links they contain would be broken, because they point to local URIs not available outside of the desktop. The same objects often exist within the Web of Data, therefore the note links to them can be recreated in the publishing process. Before the note is published, our system searches for existing public Web aliases for the local resources. They are then used to substitute the local private data referenced in the text --- the links are changed to point to the Web resource. In this way, the published links are valid, the meaning of the link is preserved (as referring to the same entity) and the private information is protected. The system then publishes the notes online as blog posts 
+taking care of the transformations required from desktop ontologies to Web ones, according to the mappings devised in Chapter \ref{ch:sdwod}.
+
+In line with the two-step process mentioned above, our system has two modules, one working on the desktop and the second one online. First, the desktop part handles the preparation of the notes for publishing, using the Web aliases identified by the service described in the previous chapter, substituting them for the local ones, as well as the transformation required from desktop ontologies to Web ones. This module is invisible to the user, except for the \emph{Publish} button shown in the user interface of SemNotes. Then, the Web part publishes the transformed notes as Linked Data in accordance with the Linked Data publishing principles.
+
+The solutions provided by most existing systems fall into two categories: \begin{inparaenum}[(i)] \item desktop applications that involve publishing the actual local resource information together with the note, or \item online applications that do not have access to desktop data relevant to the user. \end{inparaenum} The first category, represented by tools like SemiBlog \cite{Moeller2005} or SemBlog \cite{Takeda2005}, is not optimal when dealing with resources that contain sensitive private information. Services like Zemanta\footnote{\url{http://www.zemanta.com}}, from the second category, have access to various online resources, but not to the personal context of the user.
+Also they miss the personal touch of desktop-based applications.

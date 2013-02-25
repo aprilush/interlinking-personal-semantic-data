@@ -1,0 +1,97 @@
+% \documentclass[12pt,a4paper,twoside]{scrbook}
+\documentclass{hepthesis}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{multicol}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{ccicons}
+\usepackage{url}
+\usepackage{color} 
+\usepackage[colorlinks=true]{hyperref}
+
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\newcommand{\hs}{\hspace{0.1in}}
+
+\makeatletter
+\@ifpackageloaded{hyperref}{%
+\hypersetup{%
+pdftitle = {Interlinking Personal Semantic Data},
+pdfkeywords = {Semantic Desktop, Personal Information Management},
+pdfauthor = {Laura Dragan}
+}
+}{}
+\makeatother
+
+\lstdefinelanguage{turtle}{
+morekeywords={@prefix, a}, 
+sensitive=false, 
+morecomment=[l]{\#}, 
+morestring=[b]",
+}
+
+\lstdefinelanguage{htmlrdfa}{
+  keywords={DOCTYPE, html, head, title, body, about, meta, content, property, rel, href, a}, 
+  keywordstyle=\color{blue}\bfseries,
+  sensitive=false, 
+  morestring=[b]',
+  morestring=[b]",
+}
+
+\lstdefinelanguage{js}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{black}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  captionpos=b, 
+  extendedchars=true,
+  basicstyle=\scriptsize \sffamily, 
+  stringstyle=\bfseries,
+  frame=single,
+  frameround=tttt,
+  showstringspaces=false,
+  breaklines=true,
+}
+
+\renewcommand{\lstlistlistingname}{List of Listings}
+
+\title{Interlinking Personal Semantic Data}
+\author{Laura C\u{a}ta\u{a}lina Dr\u{a}gan}
+
+\begin{document}
+
+\begin{frontmatter}
+ \input{frontmatter/frontmatter}
+\end{frontmatter}
+
+\begin{mainmatter}
+ \input{chapters/introduction}
+ \input{chapters/background}
+ \input{chapters/core}
+ \input{chapters/conclusion}
+\end{mainmatter}
+
+\begin{appendices}
+ \input{appendices/appendix}
+\end{appendices}
+
+\bibliographystyle{apalike}
+\bibliography{bib/mine,bib/thesis}
+
+\end{document}

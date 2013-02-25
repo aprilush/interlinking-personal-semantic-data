@@ -1,0 +1,16 @@
+\section{Linking Publication Data with Sclippy}
+
+The work presented in Chapter \ref{ch:sdwod} is based on previous work \cite{Groza2009} on linking publication data from the Web of Data and from the Semantic Desktop. It consists of a three step process (extraction, expansion, integration) that starts from a file with no metadata and incrementally enrich it to a comprehensive semantic model around the given publication, linked and embedded within the personal information space. The process is implemented by Sclippy. 
+
+The three steps are: 
+\begin{itemize}
+ \item extraction --- metadata is automatically extracted from the publication; 
+ \item expansion --- the extracted metadata is used to search the Web of Data and find relevant information which is then connected to the original metadata; and 
+ \item integration --- the metadata is further enriched by embedding it within the Semantic Desktop, where it is automatically linked with the existing personal metadata.
+\end{itemize}
+
+The work done by \cite{Groza2009a} is broader in a sense than our work, as it also includes in the first step of the process --- extraction --- containing complex algorithms for shallow (i.e. title, authors, abstract) and deep (i.e. discourse knowledge items like claims, positions or arguments) extraction of metadata from documents. Our work relies on the metadata already extracted by external applications or by the underlying Semantic Desktop, and instead focuses on the expansion and integration steps. We also aimed to provide a generic model for the integration of Web of Data sources and the Semantic Desktop, broadening the scope from the world of publications and authors.
+
+The linking of publications done by Sclippy was motivated by the growing difficulty for early stage researchers to determine relevant work in a domain. The existing efforts are limited in the online world, where there are many publishers, each providing access to disjunct corpora of publications, and regardless of how well interconnected and easy to search they are, they do not cover all possible sources. The Semantic Desktop, being the implicit place where researchers would store documents, and already providing means of interlinking and better management of information, is the obvious choice for connecting to the similar but richer information available on the Web.
+
+While Sclippy served as basis for our work, it also provided our first real-world use case where the interlinking of the Semantic Desktop data with the Web of Data would be useful, as well as the first example of a customised desktop service benefiting from it.

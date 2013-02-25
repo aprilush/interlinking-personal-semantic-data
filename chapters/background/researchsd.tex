@@ -1,0 +1,142 @@
+\section{A Survey of Semantic Desktops}
+\label{sec:sd}
+
+We have covered so far the futuristic systems of the past and the visionaries who imagined them, like the Memex, which since 1945 have been an inspiration for most of the work in personal computing and personal information management. We have also briefly described the Semantic Web and its technologies. We will now show through a list of “modern” Semantic Desktops how semantic technologies are put to use in those systems to realise the vision of the Memex, and more.
+
+\subsection{Common Challenges}
+\label{sec:sdgoals}
+
+The term \emph{Semantic Desktop} was coined in 2003 by Decker and Frank and was taken up first by Sauermann in Gnowsis \cite{Sauermann2003}. 
+
+The [Social] Semantic Desktop saw the fastest rise and uptake during the 2004 -- 2009 period, when most research work was put into the development of systems and applications, new and improved algorithms to support knowledge work. 
+These systems and tools were aiming to solve similar problems as was the Memex before them: supporting and improving knowledge work by mimicking the way the brain works --- using Bush's associative trails reworked with the help of the semantic technologies. 
+The fast growth of the digital world, while providing easier access to information and communication, has created new problems, foreseen by Nelson in the 70s: there is so much information available that it becomes unmanageable. 
+
+Thus, the challenges that the Semantic Desktops aim to solve can be described as follows:
+\begin{description}
+ \item[Information overload] caused by the ease with which information can now be generated, shared, stored and accumulated. The amount of information that we see, receive, create every day is enormous. While the storage and processing capacity of hardware has increased many-fold, re-finding stored information has become a more complex task. The challenge is to enable users to manage this large amount of information better, while not spending more time and effort organising it. 
+ \item[Data silos] are created by desktop applications which store their data in proprietary  formats, in storage inaccessible to other applications which could possibly reuse that information, thus each mus recreate it in their own formats and store it in their own walled repositories. 
+ The negative effects of this vicious circle are \emph{data duplication}, and \emph{disconnected information}. Having the same data in multiple applications leads to difficulties in keeping it up to date and synchronised. Additionally, having pieces of information relating to the same object or entity spread over several locations and tools makes working with that information more difficult, as it requires opening and browsing through several folder hierarchies and application structures, as well as piecing together the information every time it is needed. The challenge presented by data silos is to give users a unified and consistent view over their data, regardless of its source and location. 
+ \item[Dynamic data] means that information changes over time, and thus it can become deprecated. Using deprecated information can have undesired effects, like sending emails to an old email address of a contact. The data silos problem above adds complexity to this --- \emph{duplication of data} in various applications makes it more difficult to decide which version is correct; \emph{disconnected information} means that when a piece of information changes, care must be taken so that the changes are made in every place where the information is kept, increasing the effort required.
+ \item[Associative trails] as those described by Bush, follow the way we think about things, by connections and associations, unconstrained by the way the information is stored or presented in various applications. This point is also related to the data silos issue. As we discussed above, studies showed that the way we form mental models and work with information is task and data centric. As long as data is disconnected and locked away in application repositories, explicit associative trails can only be fragmented, short and thus hurting productivity. 
+\end{description}
+
+The 2004 white paper by \cite{Decker2004} ambitiously describes a solution, the Social Semantic Desktop as ``a novel collaboration environment, enabling the creation, sharing and deployment of data and metadata'' and names the sources that would contribute to the development of such a system: ``Semantic Web, Peer-to-Peer Networks, and Online Social Networking.'' From the point of view of the future Social Semantic Desktop, the Semantic Desktop was just one piece of the puzzle, its function being that of a smart personal information management tool, that provides a common vocabulary, creates and maintains a network of interconnected personal information, stores it and gives users access to it through search and browsing.
+
+The 2005--2006 workshop series on the Semantic Desktop, and the 2005--2008 series of hands-on workshops\footnote{\url{http://semanticweb.org/wiki/Semantic\_Desktop\#Dissemination\_activities}} served as a catalyst for early ideas and brought together researchers interested in the topic, who were already working on relevant projects. Some of the systems that are described below were introduced at these workshops: \emph{IRIS}, \emph{DeepaMehta}, \emph{HyperSD}, \emph{WonderDesk}. The workshops saw also the presentation of stand-alone semantic applications like the Semantic Clipboard \cite{Reif2006}, Beagle++ \cite{Brunkhorst2006}, Semantic Wikis \cite{Oren2005,Aumueller2005}, Semantic Instant Messaging (SAM \cite{Franz2005}, Nabu \cite{Osterfeld2005}), semantic federation \cite{Park2006}, semantic search and ranking \cite{Chirita2005}, and trust \cite{Noh2006}.
+
+\subsection{Semantic Desktop Systems}
+\label{sec:sdsystems}
+
+In this section we present a review of existing Semantic Desktops. The NEPOMUK project is described separately in Section \ref{sub:nepomuk}. 
+
+The Semantic Desktops presented here have the same common goals, and tackle by some extent the same challenges we described in Section \ref{sec:sdgoals}. Some of the systems cover a broad spectrum of activities, aiming for a general solution, while others are focused on precise PIM tasks like email or task management. 
+
+We begin by describing the systems, along with their characteristics and features, and then continue by delving into the details of the architecture, services and ontologies for a subset of them. We start with the more relevant ones, which we describe in more detail. We then continue with other systems providing similar functionality. The list is ended by very specialised systems or applications, with semantic features.
+
+\subsubsection{Haystack}
+
+The Haystack system came out of MIT's Computer Science \& Artificial Intelligence Laboratory (CSAIL) as early as 1997. It started as a personal system for Information Retrieval, where users manage their own private information \cite{Adar1999}, and the system adapts to the users' behaviour. Although not explicitly stated, from the beginning Haystack has been a semantic system, as it created and saved metadata links, or associations between things in the user's corpus, and allowed these links to be followed from one document to another. The connections are made either by inspecting the content of the documents, or by tracking the user's activity and inferring the connections. The user can also annotate content with metadata. 
+
+The architecture of the system evolved over time, but the overall structure remained the same \cite{Huynh2002,Quan2003b} --- a three-tiered design. At the bottom there is a storage layer for the user's content --- initially a database, later, an RDF store. On top of the storage, Haystack provided a basic data model for the objects, metadata and links; later it moved to RDF for describing the data. The RDF model is general, but it allows customisation by users \cite{Karger2006}. The top level is made of client applications which can have one of several roles: \begin{inparaenum}[(i)] \item proxies for extracting information from existing unstructured sources like user applications or the Web; \item connectors for linking already extracted information; \item observers of user actions \end{inparaenum}. There are also client services through which the user can interact directly with the data --- modify it, search it or visualise it. 
+
+\subsubsection{Stuff I've Seen (SIS)}
+
+The Stuff I've Seen (SIS) system is presented by \cite{Dumais2003} as a solution to re-finding previously seen information, be it in an email, on a web page or in a document. The authors recognise the problem of data loss due to ``the multiplicity of independent applications used to manage information each with its own organisational hierarchy'' and ``the limited search capabilities'' they offer. SIS was not meant to be a new PIM application, but a unified point of access to existing content from other applications. It uses a central index and provides a common search interface over existing information sources. It aids re-finding of information by employing contextual cues in the search interface. 
+
+Developed at Microsoft, the system is based on the Microsoft Search indexing infrastructure, thus having access to functions of the operating system inaccessible to third-party applications. The architecture is modular. Five main components are chained to feed data extracted from various sources into the index. There is no mention of any semantic technologies being used, although some structured information is extracted: type of the resource, relations to other resources, like sender of an email and author of a document. The structures are then used to provide faceted query refinement. Some extraction of information from the content of the files is done with natural language processing. SIS also allows users to create metadata annotations on their content, which is an important first step towards creating semantic relations.
+
+An extensive user evaluation of the system explored the best ways of presenting the search results, and determined which are the most common ways of searching for information. 
+It found that time and people are important cues in re-finding, and thus should be included as part of the saved context. 
+The importance of the time dimension is further studied in \cite{Ringel2003}, also based on the SIS system. 
+Lifestreams \cite{Freeman1995,Fertig1996,Freeman2007} proposed a chronological ordering of information and a totally reworked metaphor for the desktop, based on time as a storage model. 
+
+\subsubsection{MyLifeBits}
+
+MyLifeBits \cite{Gemmell2002,Gemmell2003a,Bell2007} is another project by Microsoft Research, which uses the Memex as a blueprint for a digital personal store \cite{Gemmell2006}. The team behind the CyberAll project \cite{Bell2001}, which then was continued by MyLifeBits, started an ambitious task: ``to digitally store everything from one’s life, including books, articles, personal financial records, memorabilia, email, written correspondence, photos (time, location taken), telephone calls, video, television programs, and web pages visited.'' \cite{Bell2004}. The initial focus was on improving the methods for capture and storage, populating a personal ontology with digitised information from many sources. The following step was devising methods for using the information gathered --- ``tools [\dots] for annotation, collections, cluster analysis, facets for characterising the content, creation of timelines and stories'' \cite{Bell2004}.
+
+MyLifeBits does not impose a strict single hierarchy over the user's data, but uses links and annotations to organise the objects, and collections to group them. The annotations and links play an important role in the system. In the style of Nelson's transclusion, the links are bidirectional, and serve as well to establish ownership of connected pieces of data. Annotations play several roles in the system, and are considered important especially for non-textual resources like audio, video and images, as they enable functionalities on these resources, like text search, and story-telling, which otherwise are not possible. The system includes features aiming to make annotation as easy as possible --- bulk annotation, predefined annotations, audio annotation. Collections are a special type of annotation. They are a way of supporting a loose hierarchy, without enforcing it. Overlapping collections are allowed, as well as resources which do not belong to any collection. ``Fluid'', or virtual collections are 
+also supported, by saving and reusing a query.
+
+Another important aspect of the system is the flexible visualisation it provides. A resource or a collection of resources can be presented in several ways, as different views can give different insights into the data. ``Furthermore, the visualisation must become a UI --- the user will want to click on a row of a table or a peak in a graph and see the data behind it.'' \cite{Gemmell2003a}
+
+MyLifeBits uses a predefined schema \cite{Gemmell2006} to describe the data collected. The schema is flexible and customisable, although the authors do not anticipate that users will make many changes to it \cite{Gemmell2003a}, as this would lead to complications in using the system. There are a set of predefined types, based on common resources available on a user's desktop. Instances of these types have unique identifiers which are used to establish the relationships. Relationship between two entities are bi-directional, and the two inverse links involved must have distinct names, e.g. ``is organiser'' and ``is organised by''.
+
+The architecture of the system is modular, with the MyLifeBits store at the centre. The store \cite{Gemmell2003a} uses a Microsoft SQL Server database to provide the schema and store the data. 
+
+\subsubsection{Gnowsis}
+
+Gnowsis \cite{Sauermann2003} is one of the first implementations of a Semantic Desktop which advocated the use of Semantic Web technologies on the desktop, and the creation of a ``personal Semantic Web for PIM'' \cite{Sauermann2009}. It proposes an architecture based on a local Web server as a desktop service, while integrated desktop applications communicate with it via Semantic Web protocols. In Gnowsis we encounter for the first time the notion of \emph{desktop services} in relation to the Semantic Desktop. 
+
+Unlike Haystack, Gnowsis proposed that existing applications be modified to work with the semantic infrastructure, rather than being replaced completely. The Semantic Desktop would play the role of integration middleware by lifting semantic data from desktop formats and storing it in a central repository accessible to the applications. The extraction of data is done by adaptors, and the resulting network of semantic information can be accessed through a Web browser type of interface, which also provides access to the underlying model. 
+
+The semantic data is described with ontologies, and the system provides a generic personal information model (PIMO) \cite{Sauermann2006}, which is rich enough to cover most use cases, but also flexible and customisable by the users. PIMO was created with the user in mind, and to support personal mental models. 
+
+The Gnowsis Semantic Desktop largely influenced the architecture and basic design of NEPOMUK \cite{Bernardi2008}. Its main role was that of an integration system \cite{Sauermann2005a,Sauermann2005b} for knowledge management. 
+
+\subsubsection{Integrate, Relate, Infer, Search (IRIS)}
+
+Another Semantic Desktop system which is all about integration is IRIS (which stands for ``Integrate, Relate, Infer, Search'') \cite{Cheyer2005}. IRIS was part of  SRI's \footnote{\url{http://www.sri.com}} Cognitive Assistant that Learns and Organizes (CALO), as a personal information knowledge source \cite{Ambite2006}. It also played the role of semantic user interface, through its embedded suite of applications. 
+
+CALO is an intelligent agent system which consists of several connected agents \cite{Ambite2005} specialised on different areas of knowledge work --- time management (PCalM \cite{Berry2004}, PTIME \cite{Berry2005a,Berry2011}, PExA \cite{Myers2007}), task management (Towel \cite{Conley2007}, PExA), contact management, and more. The AI agents are not necessarily semantic, although they do communicate with IRIS and use the semantic information it provides in their actions. CALO not only uses the knowledge, but also creates knowledge back into IRIS.
+
+IRIS uses ontologies to describe data --- initially a comprehensive ontology was defined, but it was replaced in favour of the Component Library Specification (CLib), the ontology used in CALO. The CLib ontology is modular just like the architecture of the system --- different agents require different ontologies: there is an Office Ontology, a Meeting Ontology, a Documentation Ontology \cite{Ambite2005}.
+
+CALO integrated parts of Personal Radar\footnote{\url{http://www.radarnetworks.com/}} into IRIS --- the triple-store implementation (Semantic Object framework), and user interface elements. One of the key features of IRIS and CALO as a whole, is the focus on machine learning. 
+
+\subsubsection{Semantic Explorer (SEMEX)}
+
+The Semantic Explorer (SEMEX) is another platform for semantic PIM. The system provides on-the-fly integration of personal and public data \cite{Dong2004}, by extending a user's personal information space and providing a logical view over it. SEMEX aligns the information integration task with the user's environment, making it happen as a side effect of the normal daily tasks.
+
+The system comes with a basic domain ontology, which can be personalised by the users either by importing new models, or by manually changing it. The authors introduce the concept of malleable schemas \cite{Dong2005c}, which can be extracted from browsing patters, or even suggested by the system based on clustering of resources. Using the ontology, SEMEX extracts semantic objects from desktop sources and stores them in a central repository \cite{Dong2005a}. 
+Reference reconciliation \cite{Dong2004,Dong2005b} plays an important role in the system, particularly for the on-the-fly integration. It uses background knowledge and previous mappings for integrating external sources whose schemas might not match. 
+
+SEMEX offers an interface, similar to that of Haystack and Gnowsis, for querying and browsing by association the underlying database.
+
+\subsubsection{Cross-COntext Semantic Information Management (X-COSIM)}
+
+The Cross-COntext Semantic Information Management (X-COSIM) \cite{Franz2007a} is a framework which supports seamless PIM and information linkage across different contexts that users might find themselves in. 
+
+The system provides a reference ontology called X-COSIMO. Additional to defining concepts and relations, the ontology also describes the various possible contexts and relations between the concepts and contexts. The ontology is comprehensive, therefore to simplify its use, the system offers an application development interface called X-COSIMA, aimed at developers.
+
+The semantic functionalities are integrated into existing applications through plugins. \cite{Franz2007,Franz2009} describes and compares COSIMail and COSIFile with their non-semantically enhanced counterparts. Like other systems above, X-COSIM provides a browser for the semantic data it handles. 
+
+\subsubsection{Multiple Ontology based Semantic DEsktop (MOSE)}
+
+The Multiple Ontology based Semantic DEsktop (MOSE) \cite{Xiao2005} is a multi-layered ontology framework for personal information management. The user manages the data through many \emph{Personal Information Applications} (PIA) which are specialised on certain tasks, like trip planning or bibliography management. The PIAs are the main feature of MOSE \cite{Xiao2006}. They each have their own ontology to describe the domain knowledge, a user interface and a specific workflow. The PIAs can communicate and share data through mappings of their ontologies. 
+
+MOSE stores its data in several repositories, one for the file descriptors, one for the resources and one for tracking provenance of resources to the files they were extracted from. These repositories are populated by several services of the framework, and by the PIAs. The data can be browsed by association, modified and queried through the resource explorer, a browser-like interface. Other user interfaces to the data are provided by the PIAs, which themselves can be customised or created from scratch by the users.
+
+\input{chapters/background/moreresearchsd}
+
+\input{chapters/background/nepomuk}
+
+\input{chapters/background/sdarchitecture}
+
+\subsection{Discussion}
+
+In this section we covered some common aspects of the systems regarding their architecture, the functionalities they provide and the way they represent and work with data.
+Following again the layered structure used before, we continue with a discussion of some of the shortcomings and possible developments which appear to affect all or most of the Semantic Desktops. 
+
+At the data level, as the systems have evolved, the ontologies they employ have become more complex. While providing good coverage of the PIM domain, comprehensive vocabularies with detailed relationships among types showed that the simpler, more general relations are used much more often, regardless of the possible loss of meaning \cite{Sauermann2008}. Hence, rich ontologies are not necessarily better, since most users prefer simple relations between resources, which are enough to remind them of the connection, without specifying it fully. Detailed vocabularies might prove more useful in the case of automatic processing of data, but using them to manually annotate is costly.
+
+Moving into the service layer, the storage and the indexing services provided by the systems use semantic technologies which have evolved at a rapid pace. A slow repository, and thus slow response times for queries and browsing have at least partially been at fault for the poor uptake of the Semantic Desktops. Fast and memory efficient triple stores are now available.
+
+Regarding the applications provided by the systems, we observed the distinction between integrating semantics into existing applications versus creating new semantic applications. 
+Forcing the users to switch from the applications they know to avail of the power of the Semantic Desktop in applications they would need to learn how to use, has not proved to be a successful strategy. However, systems like Gnowsis, X-COSIM and NEPOMUK use plugins to add semantic functionality to existing popular tools, thus letting users continue to use their preferred tools while benefiting from the added semantics.
+
+One of the reasons for the slow uptake of the Semantic Desktop could be the cold start problem, which is observable despite multiple automatic ways of extracting, linking and importing resources, and kick-starting the system. This could prove that the user's manual annotations are more important than the automatically extracted data, which has its own important role though. However, since the automated data comes from sources which are accessible to the user anyway through conventional tools, there is no immediate incentive to use the semantic applications, which translates in little manual information being added into the system, and the benefits delayed further, despite several evaluations \cite{Franz2007,Sauermann2008} proving that Semantic Desktops \emph{are} better for PIM tasks \cite{Franz2009}.
+
+It could also be that the visualisations used for the automatically extracted data are not suitable for the purpose, or not attractive enough.
+Generic graph or table visualisations are not appealing, and treating every resource the same is not an effective way of conveying information.
+
+In recent years two developments occurred and influenced the direction in which the Semantic Desktops evolve: \begin{inparaenum}[(i)] \item the exponential growth of semantic data available online, mostly due to the Linked Data initiative and the Linking Open Data project which have a large success, and \item the growing concern about the privacy and security of personal data\end{inparaenum}. 
+Some of the information available as Linked Data might be relevant to the users of Semantic Desktops, so using it in applications and services to add value to the users is a low hanging fruit, -waiting to be picked. However, the open aspect of most of the available data causes concern especially when it becomes mixed with valuable private personal information. Privacy is not the only concern, albeit a very important one. Establishing whether the Web information is trustworthy is another concern, and possibly a harder one to tackle.
+
+\section{Conclusion}
+
+This chapter covered Semantic Desktop systems and applications described in literature, starting from the historical ones like the Memex, NLS and Xanadu, to recent ones like NEPOMUK. We showed that they share common goals and characteristics, and we extracted and discussed their general architecture and data representation means. Understanding these is very important for the core part of the thesis, as our work is grounded and builds on top of the framework provided by the Semantic Desktop, specifically, the Nepomuk-KDE Semantic Desktop.
+
+In recent years other systems have emerged, targeting the issues described above, on the desktop or other devices, by using semantic technologies. However, the focus has changed from exploring possible architectures and creating vocabularies, to a more data centric approach. The Semantic Desktop has matured, along with the semantic technologies it employs, so that now new and more exciting, as well as harder, problems arise. Now that the infrastructure has been put in place, the Semantic Desktop awaits the killer app which would bring it and the possibilities it opens into the public eye. Siri\footnote{\url{http://www.apple.com/iphone/features/siri.html}} and Evi\footnote{\url{http://www.evi.com}}, as well as IBM's Watson\footnote{\url{http://www-03.ibm.com/innovation/us/watson/}} have led the way.
+
+In the next part, we continue by presenting the core research of the thesis, which builds on top of the base set by the Semantic Desktop, to better interlink personal information, not only within the desktop, but also to the Web.

@@ -1,0 +1,16 @@
+\section{Overview of the Process and Prerequisite Steps}
+\label{sec:sembloggingapproach}
+
+We propose an approach that enables the publishing and sharing of personal notes by extending the functionality provided by SemNotes, and by using the Web of Data aliases found for desktop resources. The process consists of two steps: 
+\begin{enumerate} 
+ \item transformation, and 
+ \item publication. 
+\end{enumerate}
+In the first step, the note is transformed locally for publication, and private local data is replaced with public references.
+In the second step, the transformed note is published online.
+
+The system requires a dedicated server, where the resources referenced and the tags assigned are shared between the notes of all users, to add a social aspect. Also, rather than trying to determine which of the many possible Web aliases found for a desktop resource is authoritative, we let the server create equivalent public resources and connect all the aliases to them. We also used the server for publishing the notes, although this can be replaced by any other blogging platform.
+
+The first prerequisite step --- note-taking and annotation of the note with the relevant desktop resources --- must be performed before any actual sharing of notes can be done. The annotation is done semi-automatically and is an existing feature in SemNotes. 
+
+The second prerequisite step consists in finding Web resource for each of the desktop entity linked to the note that is about to be published. This step is executed by a desktop service which implements the two-part algorithm detailed in the previous chapter, the blocking pass using Sindice to retrieve possible candidates and filtering the list by the score returned by the matching algorithm. The local service has access to, and uses all the information available on the desktop about a resource to identify only exact matches for it. The aliases which are found for the desktop resources are saved by creating a \verb|pimo:hasOtherRepresentation| link in the local repository between the desktop resource and the Web one.

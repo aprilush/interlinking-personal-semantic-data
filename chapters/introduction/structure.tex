@@ -1,0 +1,30 @@
+\section{Thesis Outline}
+\label{sec:outline}
+
+The remainder of the thesis is structured as follows: 
+
+\subsection*{Part \ref{part:background} --- Foundations}
+
+We begin by setting the foundations for our work. This part is comprised of two chapters. 
+
+\begin{description}
+\item[Chapter \ref{ch:background}] describes the terminology and introduces some of the related work about the Semantic Web and its representative technologies, Linked Data, and Personal Information Management.
+\item[Chapter \ref{ch:sd}] contains an extensive survey of existing Semantic Desktops, from the visionaries that inspired them, to discussing their architectures, and their applications, the common points and what they do differently. This chapter also describes in more detail the NEPOMUK Semantic Desktop, the framework on which this thesis is built on.
+\end{description}
+
+\subsection*{Part \ref{part:core} --- Core}
+
+The core of the thesis presents our work, divided in four chapters: the first two reflect the approaches used to solve our two main research questions, and the last two contain respectively a combination of the approaches into one unified use case, plus a set of extensions complementing the work.
+
+\begin{description}
+\item[Chapter \ref{ch:semnotes}] describes our solution to the first research question \textbf{Q 1.} --- how to build semantic applications for the Semantic Desktop, and all of its sub-questions. To illustrate the solution, we present the design and implementation of SemNotes, a semantic note-taking tool for the Semantic Desktop, as an example application. We use note-taking as an example because it is a desktop activity that is not restricted to a specific domain, as the notes can vary widely in topic. It is also a common activity that plays an important role in Personal Information Management and one that we believe would benefit from the use of semantic technologies.
+\item[Chapter \ref{ch:sdwod}] describes our solution to the second research question \textbf{Q 2.} ---  how to expand the scope of the Semantic Desktop into the Web of Data, by providing an algorithm, and its implementation, for finding Web aliases of desktop resources. The work is motivated by many of the resources from the Semantic Desktop, also appear on the Web, and the information available about them online could be used to augment the local data. By creating the connection between the local resources and their Web counterparts, we make the first step towards truly personalised desktop services using Web data, and also enabling the publication of desktop data safely online.
+\item[Chapter \ref{ch:semblogging}] describes a system that uses of the work from the previous two chapters, publishing online the semantic notes taken with SemNotes, as semantic blog posts. Locally, the notes are well integrated and interlinked with the rest of the semantic network of desktop data. However, as the connections are to local resources,  publishing the note as a blog post directly would lead to broken links and the context of the note being lost. On the other hand, including the related desktop information as metadata with the blog post might lead to privacy issues. However, because the relevant desktop resources have Web aliases, we can replace the local links with Web links and preserve the context without the risk of exposing any private information.
+\item[Chapter \ref{ch:mischelperapps}] contains short descriptions of several applications and extensions for the Semantic Desktop, which complement the main work presented before. We begin with extensions to SemNotes which were built to incorporate and test existing research in the area of Natural Language Processing, and which could be applied to note-taking, enhancing the user experience. We also describe the process of linking publication data with Sclippy, the tool that initiated our work on connecting the desktop with the Web of Data. Another application for the Semantic Desktop that could connect to the Web is Konduit. It was envisioned as a simple user friendly tool that allows users to create their own applications with semantic data, by visually defining workflows.
+\end{description}
+
+\subsection*{Part \ref{part:conclusion} --- Conclusion}
+
+\begin{description}
+ \item[Chapter \ref{ch:conclusion}] contains the conclusion of the work, reiterating the contributions and how they answer our research questions. We discuss some of our results and the insights we gathered from the work. We also outline ideas for future research.
+\end{description}

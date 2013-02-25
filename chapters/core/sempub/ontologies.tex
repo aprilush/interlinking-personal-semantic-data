@@ -1,0 +1,64 @@
+\subsection{Ontologies}
+
+Although both the Semantic Desktop and the Semantic Web use the same representation languages, i.e. RDF(S)/OWL, they use different vocabularies to describe their data. This vocabulary gap makes data integration difficult.
+
+The NEPOMUK project defines a set of desktop ontologies to describe its data.
+SemNotes uses these ontologies to represents personal notes as instances of \verb|pimo:Note| and are linked to the \verb|pimo:Thing|s they mention by the relation \verb|pimo:isRelated|. 
+
+When a desktop resource is found to represent the same real world entity as a Web resource, the relation is stored on the desktop as \verb|pimo:hasOtherRepresentation|. This property is recommended by the PIMO specification as desktop equivalent to the \verb|owl:sameAs| relation, although without the formal semantics that the latter provides. We also use the property \verb|pimo:hasOtherRepresentation| to store the remote URL of a note when it is published. If the note changes on the desktop after publication, the property is replaced with \verb|pimo:hasDeprecatedRepresentation|.
+
+While well-suited to represent desktop information, these ontologies are not used, so far, on the Web. However, numerous vocabularies have emerged for describing semantic data published online. Such ontologies have now been widely adopted and are recommended as best practices when publishing data on the Web \cite{Bizer2007}. 
+
+Consequently, while representing similar objects, the two sets of vocabularies must be aligned so that on the one hand, desktop information can be moved to the Web and understood by usual Semantic Web applications that rely on the aforementioned vocabularies, and on the other hand, Web information could be understood and imported by Semantic Desktop applications. In order to enable interoperability between the desktop and the Web, we defined mappings between the sets of ontologies. The mappings create appropriate subclasses or subproperties of the relevant concepts from the chosen vocabularies.
+
+SIOC is probably the most widely used vocabulary for interlinking social media within the Web of Data.
+There are already many tools for creating and using SIOC data \cite{Bojars2008}.
+This is why we chose to represent the \verb|pimo:Note|s as \verb|sioc:Post|s when they are published online with our system. The rest of the desktop resources are also transformed into concepts from the vocabularies listed above (see Table \ref{tab:classmappings}), the mappings being published at \url{http://rdfs.org/sioc/nepomuk}.
+\begin{table}[htb]
+\centering
+\ra{1.3}
+\begin{tabular}{@{}rcl@{}}
+\toprule
+Class && Subclass of \\ 
+\midrule
+
+\verb|pimo:Note| && \verb|sioc:Post| \\
+
+\verb|nao:Tag| && \verb|sioct:Tag| \\
+
+\verb|pimo:Person| && \verb|foaf:Person| \\
+
+\verb|pimo:Project| && \verb|doap:Project| \\
+
+\verb|pimo:Event| && \verb|ical:Vevent| \\
+
+\bottomrule
+\end{tabular}
+\caption{Sample of the mapping between classes.}
+\label{tab:classmappings}
+\end{table}
+The note's properties, like title, creation and last modification time, are translated to the appropriate Dublin Core properties: \verb|dcterm:created|, \verb|dcterms:modified| and \verb|dcterms:title|. The tags associated locally with the notes are transformed into \verb|sioct:Tag|s associated with the published post using the \verb|sioc:topic| property. Table \ref{tab:propmappings} lists the proposed mappings for properties\footnote{Although \texttt{nao:lastModified} and \texttt{dcterms:modified} do not have the same semantics, defining subproperty relations between them is acceptable.}.
+
+\begin{table}[htb]
+\centering
+\ra{1.3}
+\begin{tabular}{@{}rcl@{}}
+\toprule
+Property && Subproperty of \\ 
+\midrule
+
+\verb|nao:prefLabel| && \verb|rdfs:label| \\
+
+\verb|nao:created| && \verb|dcterms:created| \\
+
+\verb|nao:lastModified| && \verb|dcterms:modified| \\
+
+\verb|nao:hasTag| && \verb|sioc:topic| \\
+
+\verb|pimo:isRelated| && \verb|sioc:related_to| \\
+
+\bottomrule
+\end{tabular}
+\caption{Sample of the mapping between properties.}
+\label{tab:propmappings}
+\end{table}

@@ -1,0 +1,51 @@
+\section{Personal Information Management}
+\label{sec:pim}
+
+Personal Information Management has been a concern and research topic from the early days of computing, and even before. Bush's Memex (see Section \ref{sub:bush}) was the first envisioned automatised PIM system. It acted as an extended personal memory, an archive of all the personal information, and a holder of explicit links between this information. The vision of the Memex was carried over through the evolution of the personal computer  (and recently many other personal devices as well). 
+
+\subsection{Personal Information}
+\label{sub:pi}
+
+To better understand what Personal Information Management is, we first need to define \emph{personal information} in this context. There is a large body of research done in the area of PIM, and as such, there are several definitions of what personal information is, some more restrictive and some more broad. However, an important distinction to make is that personal information is not \emph{Personal Identifiable Information (PII)} which is a piece of data that uniquely identifies a person. Personal information is also not restricted to private information. It is true that some of our personal information is private, but not all of it. As \cite{Lansdale1988} described: ``personal information is information not in a sense that it is private, but that we have it for our own use. We own it and would feel deprived if it would be taken away.'' In his Ph.D. thesis, Boardman defines Personal information as ``information owned by an individual and over which this individual has a direct control'' \cite{
+Boardman2004PhD}.
+
+Jones \cite{Jones2007PIMBook,Jones2008KFTFBook} defines personal information from the point of view of its relation to a person, through six overlapping categories:
+\begin{itemize}
+ \item \emph{controlled by (owned by) me} --- the information the person keeps, directly or indirectly, for personal use;
+ \item \emph{about me} --- the information about a person, but available to, and possibly under the control of others;
+ \item \emph{directed toward me} --- email received, or advertisements seen, this information itself may not be relevant to the person, but its impact is personal;
+ \item \emph{sent (posted, provided) by me} --- this information is no longer under the control of the user after it has been sent;
+ \item \emph{(already) experienced by me} --- like a radio show, a book read, or a web page seen, this information may or may not be under the control of the person;
+ \item \emph{relevant (useful) to me} --- this category includes information from the previous categories, but also new information, which has not been seen before, but is relevant or useful.
+\end{itemize}
+In this thesis, when we refer to personal information, we mean it in the broadest sense of the term, as in this definition by Jones.
+
+\subsection{Personal Information Management}
+\label{sub:pim}
+
+The goal of PIM is to help the user find the right information at the right time for the task at hand, with as little effort as possible. The means to achieve this is to enable the user to organise the information better, and over time, organisation has transformed from the means to a goal in itself. 
+
+As with the definition of personal information, there are several definitions for PIM. \cite{Lansdale1988} describes it as ``the methods and procedures by which we handle, categorise, and retrieve personal information on a day-to-day basis.'' \cite{Barreau1995b} defines a PIM system as ``an information system developed by or created for an individual for personal use in a work environment.'' According to \cite{Boardman2004}, PIM is ``the collection, storage, organisation and retrieval of items of digital information (e.g. email, files, appointments, reminders, contacts, bookmarks) by an individual in their personal computing environment.'' \cite{Jones2008KFTFBook} formally defines PIM as referring to ``both the practice and the study of the activities a person performs in order to acquire or create, store, organise, maintain, retrieve, use and distribute the information needed to meet life's many goals (everyday and long-term, work-related and not) and to fulfil life's many roles and responsibilities.'' 
+\cite{Lansdale1988} describes PIM in relation to psychology --- showing how classification is a difficult activity due in part to ambiguous terms, and how memory affects recall.
+The term ``mental model'' was coined by \cite{Craik1943} and has been used and studied \cite{Norman1983,Paivio1986,Johnson-Laird1989} since then. Research in psychology and cognitive sciences has shown how mental models are created, how they evolve and how they support learning, collaboration and information retrieval \cite{Jarvelin2003,Payne2003,Jones2011}. An overview of the field and its connection to PIM is presented in \cite{Nadeen2007}. Conceptual models have been described and used by both Bush and Engelbart as foundations for their work.
+
+According to \cite{Barreau1995b}, PIM systems can be categorised using the following criteria, which are still valid today:
+\begin{itemize}
+ \item \emph{acquisition} -- how and what information enters the system; 
+ \item \emph{classification and organisation} --- how the information is grouped and labelled;
+ \item \emph{storage} --- how the information is stored for later retrieval; 
+ \item \emph{maintenance} --- how the information is updated and migrated if needed; 
+ \item \emph{retrieval} --- how the system enables retrieval of information at the appropriate time, this being one of the most important functions of PIM, the majority of the other characteristics revolving around and working towards the eventual retrieval of information; 
+ \item \emph{output} --- how the system can answer queries related to the user's information and context.
+\end{itemize}
+
+Many user studies have been conducted to determine the requirements for different PIM tasks, how people tend to solve problems that occur frequently, how they generally organise their information --- be it on their physical workspaces or on their virtual ones. One of the most notable studies is that of \cite{Barreau1995a}, which ``investigated information organisation practices of users''. They categorise the information handled by the participants into three categories:  ephemeral, working, and archived --- with the very interesting observation that one of the concerns raised by the study was the large amount of ephemeral information that the users had to cope with, which accumulated and cluttered the workspace. The management of this ephemeral information is the focus of the study by \cite{Bernstein2008} on ``information scraps'', defined as ``is information items that fall outside all PIM tools designed to manage them''.
+
+Another finding of the Barreau and Nardi study was the ``preference for location-based search for finding files'' and ``the critical reminding function of file placement''. 
+\cite{Fertig1996a} argue the need for better systems for organising the information than those offered by the desktop metaphor at that time. They suggest that although people make the best of the tools they are given, that does not mean that the tools are suitable for the task, and that better alternatives should be researched. Their examples include the Lifestreams \cite{Freeman1995,Fertig1996b} system which proposes a chronological organisation of documents, and the MIT Semantic File System \cite{Gifford1991} which offers an associative organisation similar to the vision of the Memex. \cite{Civan2008} describes another user study focused on comparing location-based organisation in folders with category-based organisation with the use of tags, in the context of email management. The study by \cite{BlancBrude2007} determines which attributes enable the best re-finding of information in a PIM system, and how tools for information retrieval could be improved by supporting the combination of attributes most 
+likely to lead the user to the desired result.
+
+Many applications have been created for each of the supporting activities of PIM: document management, contact management, email, calendaring, task management. These applications serve their chosen domain well, offering rich sets of features and capabilities. However, the information that each of them handles is rarely used on its own, or separate from the rest, thus integrated information is a requirement of PIM. Additionally, a prevalent problem is the locking of information in application specific repositories, and in application specific formats, making integration difficult. Another problem is information fragmentation in multiple places and applications. \cite{Boardman2004} describes a cross-tool study to determine how users manage their personal information within applications and across PIM tools. The findings show that most of the time the information is classified in similar hierarchies, and as a result there is duplication of the work required to organise information in each tool. From another 
+longitudinal study Boardman classifies users into categories, depending on their behaviours, and presents insight into how these behaviours evolve over time. \cite{Kaptelinin2007} describe two different approaches to information integration: through a single ``mega-application'' which supports multiple PIM activities, or through the coordination of several applications in a unified workspace. The problem of information fragmentation and solutions for unification or integration are also found in \cite{Karger2006,Karger2007}.
+
+Another challenge relevant to building and improving PIM tools is how to evaluate them. The problem has been discussed by \cite{Whittaker2000} and also by \cite{Kelly2006,Elsweiler2007,Bernstein2007}. The main difficulty o\-riginates from the personal nature of the information handled by the systems, and the familiarity of the users with this information, familiarity which cannot be replicated in artificial conditions. It extends to the fact that the tasks that users work towards solving with the PIM systems are also highly personal, thus artificial tasks for the purpose of evaluation would not yield clear results. 

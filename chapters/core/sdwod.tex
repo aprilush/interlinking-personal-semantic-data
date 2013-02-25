@@ -1,0 +1,33 @@
+\chapter{Bridging the Gap between the Semantic Desktop and the Web of Data}
+\label{ch:sdwod}
+
+\begin{flushright}
+ \textit{Based on ``Linking Semantic Desktop Data to the Web of Data'' \cite{Dragan2011b}\\published at the 10th International Semantic Web Conference (ISWC~2011)}
+\end{flushright}
+
+The previous chapters showed how the Semantic Desktop enables better personal information management on our computers, using semantic technologies to explicitly connect information which is naturally connected in the real-world, and thus matching the representation to a user's mental model. However, our personal data is often a reflection of our subjective view, or limited knowledge. Thus, although it may seem huge when faced with the task of organising it, the information on the desktop is small compared to the amount of information available online. The Web of Data contains a linked network of information similar to the one on the desktop, only at a much larger scale. Connecting the desktop to the Web of Data would enrich and complement desktop information.
+
+This chapter presents a solution to the second research question \textbf{Q 2.} from Section \ref{sub:question}, \emph{how to expand the scope of the Semantic Desktop into the realm of the Web of Data, to enhance the user experience and benefit?}, more specifically, to the first sub-question \textbf{Q 2.1.} described there --- \emph{how to find instances representing the same real-world thing described by a Semantic Desktop resource?}
+
+Our solution uses a semantic search engine for the Web of Data, such as Sindice\footnote{\url{http://sindice.com/}}, to find and retrieve a relevant subset of entities from the Web. We present a matching framework, using a combination of configurable heuristics and rules to compare data graphs, that achieves a high degree of precision for the linking decision.
+We evaluate our methodology with real-world data --- we create a gold standard from relevance judgements by experts; and measure the performance of our system against it. We thus show that it is possible to automatically link desktop data with Web data in an effective way.
+
+\input{chapters/core/sdwod/introduction}
+
+\input{chapters/core/sdwod/background}
+
+\input{chapters/core/sdwod/architecture}
+
+\input{chapters/core/sdwod/implementation} 
+
+\input{chapters/core/sdwod/evaluation}
+
+\input{chapters/core/sdwod/discussion}
+
+\section{Conclusion}
+
+In this chapter, we presented a framework to automatically link entities from the Semantic Desktop to the Web of Data. This is the logical next step after the creation of semantic data on the desktop, presented in the previous chapter.
+
+The framework uses existing technologies such as semantic search engines and public SPARQL endpoints for retrieving a set of candidates. Each candidate is then evaluated more precisely based on a collection of matching components using string matching, heuristics and rule-based mechanisms. We evaluate the system qualitatively, using real-world data retrieved from a Nepomuk-KDE Semantic Desktop and the Sindice search engine. The evaluation is based on relevance judgements from a group of experts. We show that the system in its current form provides satisfactory results in term of precision for automatic linking of entities.
+
+Once the two networks of linked data are connected, we can build semantic applications and services using personal data from the desktop and enriched with information from the Web of Data. In the next chapter we present one such application.

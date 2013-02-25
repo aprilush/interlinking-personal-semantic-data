@@ -1,0 +1,15 @@
+\subsection{Server Schema}
+
+In order to publish the resources with a consistent URI scheme, we defined patterns for naming the objects published from the desktop on the Web. In the schema definition, we apply several Linked Data patterns described in \cite{Dodds2010LDPBook}: 
+\begin{itemize} 
+ \item patterned URIs --- for all the entities, to make them more human readable; 
+ \item proxy URIs --- for the server URIs, to group multiple Web aliases;
+ \item equivalence links --- for the resources related to the notes, to unify various sources; 
+ \item natural keys --- in the tag URIs. 
+\end{itemize}
+
+For each note the server generates a new unique identifier \verb|id| which is used to create the note's URI in the form: \verb|http://notes.server/note/id|.
+
+According to the proxy URIs identifier creation pattern, we generate new URIs for the resources related to the notes. This ensures that the publishing process is consistent and avoids having to choose among several Web aliases a resource could have. Like the notes, each resource has a unique identifier on the server, which is used to create the resource URI according to the following format: \verb|http://notes.server/resource/id|. Resources are shared by all the notes that link to them, which increases the interlinking and the consistency of the data. For each resource, the server keeps internally a list of Web aliases using \verb|owl:sameAs| links.
+
+Tags are considered a particular type of resources, and are also shared on the server. The specific format for the URI: \verb|http://notes.server/tag/label|, differentiates them from regular resources. The label of the tag acts as a unique identifier, and is case sensitive. They are created on the fly, and are persisted when they are used for the first time.

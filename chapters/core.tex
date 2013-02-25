@@ -1,0 +1,25 @@
+\part{Core}
+\label{part:core}
+
+In the core part of the thesis we present o-ur main contribution, consisting of research and applications towards better interlinking of information on the Semantic Desktop. We introduce interlinking of personal notes with the semantic note-taking tool SemNotes, then we present a method for connecting Semantic Desktop data to the Web of Data, followed by the description of a use case and system for semantic publishing which incorporates and builds on the two previous chapters. Each of the chapters is based on previously published works.
+
+We start from the premise of the Semantic Desktop --- it provides the framework we need for building our network of linked personal information. The order of the chapters follows the logical order of interconnecting Semantic Desktop information. 
+
+We start at a local level in Chapter \ref{ch:semnotes}, by describing ways of creating new semantic data within the desktop, integrating it with the existing information from the desktop, and making it accessible across application borders. In this context, we present the challenges we found and our solutions to semantic application development on the Semantic Desktop.
+
+Since the personal information we use is no longer restricted to the desktop, it has become important to expand the network of personal linked data beyond the desktop, into the Web of Data. Making use of the large amount of data available online in linked form, in Chapter \ref{ch:sdwod} we describe a method for bridging the gap between the two linked data networks --- the Semantic Desktop and the Web of Data. 
+
+In Chapter \ref{ch:semblogging} we merge the interlinking of new notes with existing semantic desktop data from Chapter \ref{ch:semnotes} with the interlinking of the same data with Semantic Web from Chapter \ref{ch:sdwod}, for the purpose of semantic publishing. The solution we present is not limited to the use case of semantic blogging, but it is valid also for e-health use cases like patient records and doctor notes, or for the enterprise domain, for reporting or collaboration. 
+
+In the last chapter of the section, Chapter \ref{ch:mischelperapps}, we describe several other proof of concept applications we developed with the same goal of enabling and supporting better interlinking of personal data on the desktop and beyond. 
+
+The work builds on top of the Nepomuk-KDE branch of the NEPOMUK Social Semantic Desktop, described in detail in Section \ref{sub:nepomuk} and it reuses the ontologies defined within the NEPOMUK project. Using the libraries and vocabularies in an application has led, as a collateral result, to improvements and changes in both.
+
+
+\input{chapters/core/semnotes}
+
+\input{chapters/core/sdwod}
+
+\input{chapters/core/sempub}
+
+\input{chapters/core/misc}

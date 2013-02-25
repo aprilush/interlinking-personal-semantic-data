@@ -1,0 +1,12 @@
+\section{Discussion}
+
+The scope of the system presented here is limited to finding Web of Data aliases for desktop resources. We leave the use of the aliases found to future work, but the use cases include personalised desktop services like those described in Section~\ref{sec:sdwodintro} and enhancement of desktop information from online sources like the one described in \cite{Groza2009}. We plan to develop a semi-automatic service that retrieves information from the Web aliases and updates the local resources, while saving provenance information for the imported data and allowing synchronisation when the Web data changes.
+
+Existing Web applications already provide similar services via specific APIs (e.g., last.fm). However this is not the goal of our work. Instead, we wish to leverage information across all public information sources accessible on the Web of Data. In addition, such third-party APIs are seen as an additional information sources on the Web, and are supported by our system.
+
+Within the system, we make use of existing semantic technologies, including semantic search engines such as Sindice. In the process of determining the aliases we focus on selecting the most appropriate URI from the list of candidates returned by the search engine. In this case, the issue of which data sources to trust is left to the search engine, which usually employs advanced techniques~\cite{Delbru2010} for making the decision. This is however not a requirement we impose on the users, who can choose to query other trusted data sources suitable for their use case.
+
+The system we presented is automatic, as no user interaction is required for it to work. Once set up it will find and save aliases to desktop resources. 
+Although the mappings were created manually, they are part of the system and do not need to be modified by end users. 
+Power users can however tweak the settings to fit their specific needs by enabling or disabling modules, changing threshold values or modifying mappings.
+While new mappings can only be created manually, expert users can take advantage of the openness resulting from the use of SPARQL-based search mechanism and update the mappings as they need, or create new ones. We envision for the future, a way of allowing power users to publish their own mappings and let other users install new mappings in a way similar to installing add-ons to Web browsers.

@@ -1,0 +1,23 @@
+\section{System Implementation Details}
+\label{sec:sembloggingsystem}
+
+Based on the process described above, the system is divided between its local part and its remote part, as shown in Figure \ref{fig:semblogsystem}. The local part handles local \emph{private} data, while the remote one handles online \emph{public} data. 
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{chapters/core/img/system}
+    \caption{Overview of the semantic publishing system.}
+    \label{fig:semblogsystem}
+  \end{center}
+\end{figure}
+The separation between them extends over three layers: ontology, data and application.
+On the \emph{ontology} layer, the NEPOMUK desktop ontologies are used locally, while popular Web vocabularies are used on the server-side. These ontologies are used to describe the \emph{data} exchanged between the applications. Desktop data is stored in the local NEPOMUK repository, while Web data is distributed. Finally, on the \emph{application} layer, the local component is an extension to SemNotes that provides publishing functionality for notes, and the remote component is a server that hosts and publishes online the notes received.
+
+The first step of the process --- transformation --- is executed on the local side, by an extension of the SemNotes application. Then, the publication step is done by the server, which receives information from the desktop and publishes the note, as we will describe next. The two application components, the communication between them, and the data translation process are described in detail below.
+
+\input{chapters/core/sempub/ontologies}
+
+\input{chapters/core/sempub/schema}
+
+\input{chapters/core/sempub/transformation}
+
+\input{chapters/core/sempub/publication}
